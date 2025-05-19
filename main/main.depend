@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1747482898 source:d:\asu\semester 6 - spring 23\cse439 - design of compilers\my project\the main version\main\main.cpp
+	<windows.h>
+	<string>
+	<vector>
+	<sstream>
+	<algorithm>
+	<stack>
+	<cctype>
+	<map>
+	<unordered_map>
+	<commctrl.h>
+	<iostream>
+	<memory>
+

@@ -1,0 +1,51 @@
+<program> → <stmt_list> $
+
+<stmt_list> → <stmt> <stmt_list_tail>
+<stmt_list_tail> → <stmt> <stmt_list_tail> | ε
+
+<stmt> → <assign_like_stmt> | <if_stmt> | <while_stmt> | <for_stmt> | <func_def> | <print_stmt> | <return_stmt> | <expr_stmt>
+
+<assign_like_stmt> → id <assign_op> <expr>
+<assign_op> → "=" | "+=" | "-=" | "*=" | "/=" | "%="
+
+<if_stmt> → "if" <expr> ":" <block> <else_clause>
+<else_clause> → "else" ":" <block> | ε
+
+<while_stmt> → "while" <expr> ":" <block>
+
+<for_stmt> → "for" id "in" <expr> ":" <block>
+
+<func_def> → "def" id "(" <param_list> ")" ":" <block>
+
+<block> → "INDENT" <stmt_list> "DEDENT"
+
+<param_list> → id <param_tail> | ε
+<param_tail> → "," id <param_tail> | ε
+
+<print_stmt> → "print" "(" <expr> ")"
+
+<return_stmt> → "return" <expr>
+
+<expr_stmt> → <expr>
+
+<expr> → <logic_expr>
+<logic_expr> → <comp_expr> <logic_tail>
+<logic_tail> → <logic_op> <comp_expr> <logic_tail> | ε
+<logic_op> → "and" | "or"
+
+<comp_expr> → <arith_expr> <comp_tail>
+<comp_tail> → <comp_op> <arith_expr> <comp_tail> | ε
+<comp_op> → "==" | "!=" | "<" | ">" | "<=" | ">="
+
+<arith_expr> → <term> <add_tail>
+<add_tail> → <add_op> <term> <add_tail> | ε
+<add_op> → "+" | "-"
+
+<term> → <factor> <mul_tail>
+<mul_tail> → <mul_op> <factor> <mul_tail> | ε
+<mul_op> → "*" | "/"
+
+<factor> → "(" <expr> ")" | num | id | string | <func_call>
+<func_call> → id "(" <arg_list> ")"
+<arg_list> → <expr> <arg_tail> | ε
+<arg_tail> → "," <expr> <arg_tail> | ε
